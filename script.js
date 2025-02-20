@@ -18,7 +18,7 @@ const cart = [];
 let total = 0;
 
 function loadProducts() {
-    fetch('http://localhost:3000/api/products')
+    fetch('https://online-store-frontend.vercel.app/api/products')
         .then(response => response.json())
         .then(data => {
             products = data;
