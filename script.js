@@ -1,14 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
-
-    const addProductForm = document.getElementById('addProductForm');
-    if (addProductForm) {
-        addProductForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            addProduct();
-        });
-    }
-
     updateTotal();
     updateCartCount();
 });
@@ -18,12 +9,18 @@ const cart = [];
 let total = 0;
 
 function loadProducts() {
-    fetch('https://online-store-frontend.vercel.app/api/products')
-        .then(response => response.json())
+    fetch('https://online-store-backend-vw45.onrender.com')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             products = data;
             renderProducts();
-        });
+        })
+        .catch(error => console.error('Error loading products:', error));
 }
 
 function renderProducts() {
@@ -33,7 +30,7 @@ function renderProducts() {
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
-            <img src="http://localhost:3000${product.image}" alt="${product.name}">
+            <img src="https://online-store-backend-vw45.onrender.com${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>Preço: R$ ${product.price.toFixed(2)}</p>
             <button onclick="addToCart(${product.id})">Adicionar ao Carrinho</button>
@@ -57,7 +54,7 @@ function renderCart() {
         const cartItemElement = document.createElement('div');
         cartItemElement.classList.add('cart-item');
         cartItemElement.innerHTML = `
-            <img src="http://localhost:3000${item.image}" alt="${item.name}">
+            <img src="https://online-store-backend-vw45.onrender.com${item.image}" alt="${item.name}">
             <h3>${item.name}</h3>
             <p>Preço: R$ ${item.price.toFixed(2)}</p>
             <button onclick="removeFromCart(${index})">Remover</button>
