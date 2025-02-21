@@ -9,13 +9,8 @@ const cart = [];
 let total = 0;
 
 function loadProducts() {
-    fetch('https://online-store-backend-vw45.onrender.com/api/products') // Ajustando a rota para /api/products
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+    fetch('https://online-store-backend-vw45.onrender.com/api/products')
+        .then(response => response.json())
         .then(data => {
             products = data;
             renderProducts();
@@ -32,6 +27,7 @@ function renderProducts() {
         productElement.innerHTML = `
             <img src="https://online-store-backend-vw45.onrender.com${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
+            <p>${product.description}</p>
             <p>Preço: R$ ${product.price.toFixed(2)}</p>
             <button onclick="addToCart(${product.id})">Adicionar ao Carrinho</button>
         `;
@@ -56,6 +52,7 @@ function renderCart() {
         cartItemElement.innerHTML = `
             <img src="https://online-store-backend-vw45.onrender.com${item.image}" alt="${item.name}">
             <h3>${item.name}</h3>
+            <p>${item.description}</p>
             <p>Preço: R$ ${item.price.toFixed(2)}</p>
             <button onclick="removeFromCart(${index})">Remover</button>
         `;
