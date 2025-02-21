@@ -9,7 +9,7 @@ const cart = [];
 let total = 0;
 
 function loadProducts() {
-    fetch('https://online-store-backend-vw45.onrender.com')
+    fetch('https://online-store-backend-vw45.onrender.com/api/products') // Ajustando a rota para /api/products
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
