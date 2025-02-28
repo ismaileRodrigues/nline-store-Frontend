@@ -25,7 +25,7 @@ function renderProducts() {
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
-            <img src="https://online-store-backend-vw45.onrender.com${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Preço: R$ ${product.price.toFixed(2)}</p>
@@ -50,7 +50,7 @@ function renderCart() {
         const cartItemElement = document.createElement('div');
         cartItemElement.classList.add('cart-item');
         cartItemElement.innerHTML = `
-            <img src="https://online-store-backend-vw45.onrender.com${item.image}" alt="${item.name}">
+            <img src="${item.image}" alt="${item.name}">
             <h3>${item.name}</h3>
             <p>${item.description}</p>
             <p>Preço: R$ ${item.price.toFixed(2)}</p>
