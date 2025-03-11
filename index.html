@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Administrativo - Loja Online</title>
+    <title>Loja Online</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Portal Administrativo</h1>
-        <div id="error" style="display:none; color:red; margin-top:10px;"></div>
+        <h1>Loja Online</h1>
+        <div class="products" id="products"></div>
+        <div class="cart-icon" onclick="openCartModal()"> 🛒 <span id="cartCount">0</span> </div>
 
         <!-- Botão com ícone de home -->
         <a href="https://site-oficial-xi.vercel.app/" class="home-button">
             <i class="fas fa-home"></i> Home
         </a>
+    </div>
 
-        <!-- Formulário para adicionar produtos -->
-        <div class="add-product-form">
-            <h2>Adicionar Produto</h2>
-            <form id="addProductForm" enctype="multipart/form-data">
-                <label for="productName">Nome do Produto:</label>
-                <input type="text" id="productName" required>
-                <label for="productDescription">Descrição do Produto:</label>
-                <textarea id="productDescription" required></textarea>
-                <label for="productPrice">Preço do Produto:</label>
-                <input type="number" id="productPrice" step="0.01" required>
-                <label for="productImage">Imagem do Produto:</label>
-                <input type="file" id="productImage" accept="image/*" required>
-                <button type="submit">Adicionar Produto</button>
-            </form>
+    <!-- Modal do Carrinho -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h2>Carrinho de Compras</h2>
+            <div class="cart" id="cart"></div>
+            <p id="total">Total: R$ 0.00</p>
+            <button onclick="makeOrder()">Fazer Pedido</button>
         </div>
-
-        <div class="products" id="products"></div>
     </div>
     <script src="script.js"></script>
 </body>
