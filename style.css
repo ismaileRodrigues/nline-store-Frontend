@@ -161,6 +161,19 @@ button:hover {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
+.home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e4002b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
 .home-button i {
     margin-right: 5px;
 }
