@@ -150,20 +150,21 @@ button:hover {
 }
 
 
-.icons {
+.header-icons {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-end;
     position: fixed;
     top: 20px;
-    right: 20px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .cart-icon {
     font-size: 2.5em;
     cursor: pointer;
     color: #ea1d2c;
-    margin-right: 20px;
 }
 
 .home-button {
