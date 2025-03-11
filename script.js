@@ -12,6 +12,7 @@ function loadProducts() {
     fetch('https://online-store-backend-vw45.onrender.com/api/products')
         .then(response => response.json())
         .then(data => {
+            console.log('Produtos carregados:', data); // Verificar os dados carregados
             products = data;
             renderProducts();
         })
