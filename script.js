@@ -49,7 +49,7 @@ function addToCart(productId) {
         renderCart();
         updateTotal();
         updateCartCount();
-        alert(`${product.name} foi adicionado ao carrinho!`);
+        // alert(`${product.name} foi adicionado ao carrinho!`);
     } else {
         console.error('Produto não encontrado:', productId);
         alert('Erro ao adicionar o produto ao carrinho.');
