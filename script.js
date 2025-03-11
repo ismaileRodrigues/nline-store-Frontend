@@ -29,7 +29,7 @@ function renderProducts() {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Preço: R$ ${product.price.toFixed(2)}</p>
-            <button onclick="addToCart(${product.id})">Adicionar ao Carrinho</button>
+            <button onclick="addToCart('${product.id}')">Adicionar ao Carrinho</button>
         `;
         productsContainer.appendChild(productElement);
     });
@@ -37,10 +37,17 @@ function renderProducts() {
 
 function addToCart(productId) {
     const product = products.find(p => p.id === productId);
-    cart.push(product);
-    renderCart();
-    updateTotal();
-    updateCartCount();
+    if (product) {
+        cart.push(product); // Adiciona o produto correto ao carrinho
+        console.log('Produto adicionado ao carrinho:', product);
+        renderCart();
+        updateTotal();
+        updateCartCount();
+        alert(`${product.name} foi adicionado ao carrinho!`);
+    } else {
+        console.error('Produto não encontrado:', productId);
+        alert('Erro ao adicionar o produto ao carrinho.');
+    }
 }
 
 function renderCart() {
