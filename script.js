@@ -23,6 +23,10 @@ function renderProducts() {
     const productsContainer = document.getElementById('products');
     productsContainer.innerHTML = '';
     products.forEach((product) => {
+        if (!product._id) {
+            console.error('Produto inválido, sem _id:', product);
+            return;
+        }
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
@@ -30,14 +34,15 @@ function renderProducts() {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Preço: R$ ${product.price.toFixed(2)}</p>
-            <button onclick="addToCart('${product.id}')">Adicionar ao Carrinho</button>
+            <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
         `;
         productsContainer.appendChild(productElement);
     });
 }
 
+
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+    const product = products.find(p => p._id === productId); // Use _id
     if (product) {
         cart.push(product); // Adiciona o produto correto ao carrinho
         console.log('Produto adicionado ao carrinho:', product);
@@ -50,6 +55,7 @@ function addToCart(productId) {
         alert('Erro ao adicionar o produto ao carrinho.');
     }
 }
+
 
 function renderCart() {
     const cartContainer = document.getElementById('cart');
