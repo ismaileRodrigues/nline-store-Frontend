@@ -1,8 +1,9 @@
 /* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #f8f8f8;
 }
 
 .container {
@@ -10,48 +11,53 @@ body {
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
 }
 
 .products, .cart {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
 .product, .cart-item {
-    border: 1px solid #ddd;
+    border: none;
     padding: 15px;
     text-align: center;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .product:hover, .cart-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #3483fa;
+    padding: 12px 20px;
+    background-color: #ea1d2c;
     color: #fff;
     border: none;
     cursor: pointer;
     margin-top: 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    border-radius: 24px;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover {
-    background-color: #2968c8;
+    background-color: #c41620;
+    transform: scale(1.05);
 }
 
 #total {
-    font-size: 1.5em;
+    font-size: 1.8em;
+    font-weight: bold;
     margin-top: 20px;
+    color: #ea1d2c;
 }
 
 .add-product-form, .login-form {
@@ -61,14 +67,16 @@ button:hover {
 .add-product-form label, .login-form label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .add-product-form input, .login-form input, .add-product-form textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-size: 1em;
 }
 
 .add-product-form button, .login-form button {
@@ -90,16 +98,17 @@ button:hover {
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: none;
     width: 80%;
     max-width: 500px;
-    border-radius: 8px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .close {
-    color: #aaa;
+    color: #666;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -117,29 +126,25 @@ button:hover {
     position: fixed;
     top: 20px;
     right: 20px;
-    font-size: 2em;
+    font-size: 2.5em;
     cursor: pointer;
-    color: #3483fa;
+    color: #ea1d2c;
 }
 
 #cartCount {
-    background-color: #e74c3c;
+    background-color: #ffbc0d;
     color: #fff;
     border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 0.8em;
+    padding: 4px 8px;
+    font-size: 0.9em;
+    font-weight: bold;
     margin-left: 5px;
 }
 
-.cart-item img {
-    width: 50px;
-    height: 50px;
-    border-radius: 4px;
-}
-
-.product img {
-    width: 150px;
-    height: 150px;
-    border-radius: 4px;
+.cart-item img, .product img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
     margin-bottom: 10px;
 }
