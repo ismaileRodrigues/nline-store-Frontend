@@ -48,7 +48,7 @@ function renderProducts() {
 function showLoading() {
     const loadingElement = document.getElementById('loading');
     if (loadingElement) {
-        loadingElement.style.display = 'fixed';
+        loadingElement.style.display = 'flex';
     }
 }
 
