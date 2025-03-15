@@ -48,7 +48,7 @@ function renderProducts() {
 function showLoading() {
     const loadingElement = document.getElementById('loading');
     if (loadingElement) {
-        loadingElement.style.display = 'block';
+        loadingElement.style.display = 'fixed';
     }
 }
 
