@@ -40,6 +40,15 @@ margin-top:55px;
     z-index: 1000;
     font-size: 2em;
     color: #333;
+}
+
+.loading::before {
+    content: "";
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: 50px; /* Ajuste o tamanho conforme necessário */
+    border: 5px solid #333; /* Ajuste a cor conforme necessário */
+    border-top: 5px solid transparent; /* Ajuste a cor conforme necessário */
+    border-radius: 50%;
     animation: spin 2s linear infinite;
 }
 
