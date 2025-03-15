@@ -32,15 +32,15 @@ function renderProducts() {
         const productElement = document.createElement('div');
         productElement.classList.add('product');
         productElement.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <details>
-                        <summary>Ver descrição</summary>
-                        <p>${product.description}</p>
-                    </details>
-                    <p>Preço: R$ ${product.price.toFixed(2)}</p>
-                    <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
-                `;
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <details>
+                <summary>Ver descrição</summary>
+                <p>${product.description}</p>
+            </details>
+            <p>Preço: R$ ${product.price.toFixed(2)}</p>
+            <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
+        `;
         productsContainer.appendChild(productElement);
     });
 }
