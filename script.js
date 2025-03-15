@@ -9,6 +9,7 @@ const cart = [];
 let total = 0;
 
 function loadProducts() {
+    showLoading();
     fetch('https://online-store-backend-vw45.onrender.com/api/products')
         .then(response => response.json())
         .then(data => {
@@ -16,7 +17,8 @@ function loadProducts() {
             products = data;
             renderProducts();
         })
-        .catch(error => console.error('Error loading products:', error));
+        .catch(error => console.error('Error loading products:', error))
+        .finally(() => hideLoading());
 }
 
 function renderProducts() {
@@ -43,6 +45,19 @@ function renderProducts() {
     });
 }
 
+function showLoading() {
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+        loadingElement.style.display = 'block';
+    }
+}
+
+function hideLoading() {
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement) {
+        loadingElement.style.display = 'none';
+    }
+}
 
 function addToCart(productId) {
     const product = products.find(p => p._id === productId); // Use _id
@@ -58,7 +73,6 @@ function addToCart(productId) {
         alert('Erro ao adicionar o produto ao carrinho.');
     }
 }
-
 
 function renderCart() {
     const cartContainer = document.getElementById('cart');
