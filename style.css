@@ -48,6 +48,7 @@ margin-top:55px;
     100% { transform: rotate(360deg); }
 }
 
+
 .product, .cart-item {
     border: none;
     padding: 15px;
