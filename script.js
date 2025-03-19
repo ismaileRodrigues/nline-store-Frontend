@@ -1,19 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+    loadCategories();
     loadProducts();
     updateTotal();
     updateCartCount();
 });
 
 let products = [];
+let categories = [];
 const cart = [];
 let total = 0;
+
+function loadCategories() {
+    showLoading();
+    fetch('https://online-store-backend-vw45.onrender.com/api/categories')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Categorias carregadas:', data);
+            categories = data;
+        })
+        .catch(error => console.error('Error loading categories:', error))
+        .finally(() => hideLoading());
+}
 
 function loadProducts() {
     showLoading();
     fetch('https://online-store-backend-vw45.onrender.com/api/products')
         .then(response => response.json())
         .then(data => {
-            console.log('Produtos carregados:', data); // Verificar os dados carregados
+            console.log('Produtos carregados:', data);
             products = data;
             renderProducts();
         })
@@ -24,24 +38,47 @@ function loadProducts() {
 function renderProducts() {
     const productsContainer = document.getElementById('products');
     productsContainer.innerHTML = '';
-    products.forEach((product) => {
-        if (!product._id) {
-            console.error('Produto inválido, sem _id:', product);
-            return;
+
+    // Agrupar produtos por categoria
+    const productsByCategory = {};
+    products.forEach(product => {
+        const category = product.category || 'sem-categoria';
+        if (!productsByCategory[category]) {
+            productsByCategory[category] = [];
         }
-        const productElement = document.createElement('div');
-        productElement.classList.add('product');
-        productElement.innerHTML = `
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <details>
-                <summary>Ver descrição</summary>
-                <p>${product.description}</p>
-            </details>
-            <p>Preço: R$ ${product.price.toFixed(2)}</p>
-            <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
-        `;
-        productsContainer.appendChild(productElement);
+        productsByCategory[category].push(product);
+    });
+
+    // Renderizar cada categoria e seus produtos
+    Object.keys(productsByCategory).forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.classList.add('category');
+        categoryDiv.innerHTML = `<h2>${category.replace('-', ' ')}</h2>`;
+        productsContainer.appendChild(categoryDiv);
+
+        const productGrid = document.createElement('div');
+        productGrid.classList.add('product-grid');
+        categoryDiv.appendChild(productGrid);
+
+        productsByCategory[category].forEach(product => {
+            if (!product._id) {
+                console.error('Produto inválido, sem _id:', product);
+                return;
+            }
+            const productElement = document.createElement('div');
+            productElement.classList.add('product');
+            productElement.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <details>
+                    <summary>Ver descrição</summary>
+                    <p>${product.description}</p>
+                </details>
+                <p>Preço: R$ ${product.price.toFixed(2)}</p>
+                <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
+            `;
+            productGrid.appendChild(productElement);
+        });
     });
 }
 
@@ -60,14 +97,13 @@ function hideLoading() {
 }
 
 function addToCart(productId) {
-    const product = products.find(p => p._id === productId); // Use _id
+    const product = products.find(p => p._id === productId);
     if (product) {
-        cart.push(product); // Adiciona o produto correto ao carrinho
+        cart.push(product);
         console.log('Produto adicionado ao carrinho:', product);
         renderCart();
         updateTotal();
         updateCartCount();
-        // alert(`${product.name} foi adicionado ao carrinho!`);
     } else {
         console.error('Produto não encontrado:', productId);
         alert('Erro ao adicionar o produto ao carrinho.');
@@ -106,14 +142,6 @@ function updateCartCount() {
     document.getElementById('cartCount').innerText = cart.length;
 }
 
-/*function makeOrder() {
-    const orderSummary = cart.map(item => `${item.name} - R$ ${item.price.toFixed(2)}`).join('\n');
-    const whatsappMessage = `Resumo do Pedido:\n${orderSummary}\nTotal: R$ ${total.toFixed(2)}`;
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=5541997457028&text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(whatsappUrl, '_blank');
-}
-*/
-
 function makeOrder() {
     const userName = prompt("Por favor, insira o seu nome:");
     const orderSummary = cart.map(item => `${item.name} - R$ ${item.price.toFixed(2)}`).join('\n');
@@ -121,7 +149,6 @@ function makeOrder() {
     const whatsappUrl = `https://api.whatsapp.com/send?phone=5541997457028&text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
 }
-
 
 function openCartModal() {
     document.getElementById('cartModal').style.display = 'block';
