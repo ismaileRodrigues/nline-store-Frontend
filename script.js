@@ -17,6 +17,7 @@ function loadCategories() {
         .then(data => {
             console.log('Categorias carregadas:', data);
             categories = data;
+            renderCategoryNav();
         })
         .catch(error => console.error('Error loading categories:', error))
         .finally(() => hideLoading());
@@ -35,11 +36,9 @@ function loadProducts() {
         .finally(() => hideLoading());
 }
 
-function renderProducts() {
-    const productsContainer = document.getElementById('products');
-    productsContainer.innerHTML = '';
-
-    // Agrupar produtos por categoria
+function renderCategoryNav() {
+    const categoryNav = document.getElementById('categoryNav');
+    categoryNav.innerHTML = '';
     const productsByCategory = {};
     products.forEach(product => {
         const category = product.category || 'sem-categoria';
@@ -49,10 +48,41 @@ function renderProducts() {
         productsByCategory[category].push(product);
     });
 
-    // Renderizar cada categoria e seus produtos
+    Object.keys(productsByCategory).forEach(category => {
+        const categoryLink = document.createElement('span');
+        categoryLink.classList.add('category-link');
+        categoryLink.setAttribute('data-category', category);
+        categoryLink.textContent = category.replace('-', ' ');
+        categoryLink.addEventListener('click', () => {
+            const categorySection = document.getElementById(`category-${category}`);
+            if (categorySection) {
+                categorySection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        categoryNav.appendChild(categoryLink);
+    });
+
+    // Adicionar evento de scroll para destacar a categoria ativa
+    window.addEventListener('scroll', highlightActiveCategory);
+}
+
+function renderProducts() {
+    const productsContainer = document.getElementById('products');
+    productsContainer.innerHTML = '';
+
+    const productsByCategory = {};
+    products.forEach(product => {
+        const category = product.category || 'sem-categoria';
+        if (!productsByCategory[category]) {
+            productsByCategory[category] = [];
+        }
+        productsByCategory[category].push(product);
+    });
+
     Object.keys(productsByCategory).forEach(category => {
         const categoryDiv = document.createElement('div');
         categoryDiv.classList.add('category');
+        categoryDiv.id = `category-${category}`;
         categoryDiv.innerHTML = `<h2>${category.replace('-', ' ')}</h2>`;
         productsContainer.appendChild(categoryDiv);
 
@@ -79,6 +109,26 @@ function renderProducts() {
             `;
             productGrid.appendChild(productElement);
         });
+    });
+}
+
+function highlightActiveCategory() {
+    const categoryLinks = document.querySelectorAll('.category-link');
+    let activeCategory = null;
+
+    document.querySelectorAll('.category').forEach(categoryDiv => {
+        const rect = categoryDiv.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            activeCategory = categoryDiv.id.replace('category-', '');
+        }
+    });
+
+    categoryLinks.forEach(link => {
+        if (link.getAttribute('data-category') === activeCategory) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 }
 
