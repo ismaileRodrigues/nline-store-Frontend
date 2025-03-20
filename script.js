@@ -62,7 +62,6 @@ function renderCategoryNav() {
         categoryNav.appendChild(categoryLink);
     });
 
-    // Adicionar evento de scroll para destacar a categoria ativa
     window.addEventListener('scroll', highlightActiveCategory);
 }
 
@@ -98,18 +97,34 @@ function renderProducts() {
             const productElement = document.createElement('div');
             productElement.classList.add('product');
             productElement.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}" onclick="openProductModal('${product._id}')">
                 <h3>${product.name}</h3>
-                <details>
-                    <summary>Ver descrição</summary>
-                    <p>${product.description}</p>
-                </details>
                 <p>Preço: R$ ${product.price.toFixed(2)}</p>
-                <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
             `;
             productGrid.appendChild(productElement);
         });
     });
+}
+
+function openProductModal(productId) {
+    const product = products.find(p => p._id === productId);
+    if (product) {
+        const productDetails = document.getElementById('productDetails');
+        productDetails.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <p>Preço: R$ ${product.price.toFixed(2)}</p>
+            <button onclick="addToCart('${product._id}'); closeProductModal()">Adicionar ao Carrinho</button>
+        `;
+        document.getElementById('productModal').style.display = 'block';
+    } else {
+        console.error('Produto não encontrado:', productId);
+    }
+}
+
+function closeProductModal() {
+    document.getElementById('productModal').style.display = 'none';
 }
 
 function highlightActiveCategory() {
@@ -211,5 +226,8 @@ function closeCartModal() {
 window.onclick = function(event) {
     if (event.target == document.getElementById('cartModal')) {
         closeCartModal();
+    }
+    if (event.target == document.getElementById('productModal')) {
+        closeProductModal();
     }
 };
