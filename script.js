@@ -222,6 +222,9 @@ function openCartModal() {
 
 function closeCartModal() {
     document.getElementById('cartModal').style.display = 'none';
+    if (cart =[]){
+        document.getElementById('cartModal').style.display = 'none';
+    }
 }
 
 window.onclick = function(event) {
