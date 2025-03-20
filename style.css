@@ -97,7 +97,9 @@ h1 {
     color: #333;
     margin-bottom: 15px;
     font-weight: 600;
+    text-align: center;
     text-transform: capitalize;
+    border-bottom: 1px solid #80808099;
 }
 
 .product-grid {
