@@ -202,9 +202,7 @@ function removeFromCart(index) {
 function updateTotal() {
     total = cart.reduce((sum, item) => sum + item.price, 0);
     document.getElementById('total').innerText = `Total: R$ ${total.toFixed(2)}`;
-      if (total=0) {
-        document.getElementById('cartModal').style.display='none'
-    }
+
 }
 
 function updateCartCount() {
