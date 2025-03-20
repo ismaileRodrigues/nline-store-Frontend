@@ -100,6 +100,7 @@ function renderProducts() {
                 <img src="${product.image}" alt="${product.name}" onclick="openProductModal('${product._id}')">
                 <h3>${product.name}</h3>
                 <p>Preço: R$ ${product.price.toFixed(2)}</p>
+                <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
             `;
             productGrid.appendChild(productElement);
         });
