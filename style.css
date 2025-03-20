@@ -6,8 +6,27 @@ body {
     background-color: #f8f8f8;
 }
 
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
 h1 {
-    margin-top: 55px;
+    margin-top: 70px; /* Ajustado para não sobrepor a top-nav */
     text-align: center;
     font-size: 2em;
     color: #ea1d2c;
@@ -16,6 +35,7 @@ h1 {
 @media (max-width: 768px) {
     h1 {
         font-size: 1.8em;
+        margin-top: 60px;
     }
 }
 
@@ -37,14 +57,14 @@ h1 {
 
 .category-nav {
     position: sticky;
-    top: 70px; /* Ajustado para ficar abaixo do header-icons */
+    top: 60px; /* Ajustado para ficar abaixo da top-nav */
     background-color: #fff;
     padding: 10px 0;
     display: flex;
     gap: 15px;
     overflow-x: auto;
     white-space: nowrap;
-    z-index: 99; /* Abaixo do header-icons (z-index: 100) */
+    z-index: 99;
     border-bottom: 1px solid #ddd;
 }
 
@@ -136,7 +156,7 @@ button:hover {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000; /* Acima de tudo */
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -178,20 +198,8 @@ button:hover {
     cursor: pointer;
 }
 
-.header-icons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 20px;
-    width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
-    z-index: 100;
-}
-
 .cart-icon {
-    font-size: 1.5em; /* Ajustado para o emoji */
+    font-size: 1.5em;
     cursor: pointer;
     color: #ea1d2c;
     display: flex;
@@ -230,8 +238,8 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-    .header-icons {
-        padding: 0 10px;
+    .nav-content {
+        padding: 10px;
     }
 
     .cart-icon {
@@ -241,6 +249,14 @@ button:hover {
     .home-button {
         padding: 8px 15px;
         font-size: 14px;
+    }
+
+    .category-nav {
+        top: 50px; /* Ajustado para telas menores */
+    }
+
+    h1 {
+        margin-top: 60px;
     }
 }
 
