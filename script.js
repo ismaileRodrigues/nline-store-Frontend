@@ -235,9 +235,3 @@ window.onclick = function(event) {
     }
 };
 
-// Adicionar timestamp ao link do CSS para evitar cache
-document.addEventListener('DOMContentLoaded', () => {
-    const cssLink = document.getElementById('css-link');
-    const timestamp = new Date().getTime();
-    cssLink.href = `style.css?t=${timestamp}`;
-});
