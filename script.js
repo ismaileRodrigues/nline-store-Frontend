@@ -234,4 +234,8 @@ window.onclick = function(event) {
         closeProductModal();
     }
 };
-
+document.addEventListener('DOMContentLoaded', () => {
+    const cssLink = document.getElementById('css-link');
+    const timestamp = new Date().getTime();
+    cssLink.href = `style.css?t=${timestamp}`;
+});
