@@ -236,6 +236,8 @@ window.onclick = function(event) {
 };
 document.addEventListener('DOMContentLoaded', () => {
     const cssLink = document.getElementById('css-link');
+    const scriptLink = document.getElementById('script-link');
     const timestamp = new Date().getTime();
     cssLink.href = `style.css?t=${timestamp}`;
+    scriptLink.src = `script.js?t=${timestamp}`;
 });
