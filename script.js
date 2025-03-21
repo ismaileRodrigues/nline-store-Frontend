@@ -256,4 +256,3 @@ document.addEventListener('DOMContentLoaded', () => {
         const newUrl = `${window.location.pathname}?t=${timestamp}`;
         window.location.replace(newUrl); // Força uma recarga completa
     }
-});
