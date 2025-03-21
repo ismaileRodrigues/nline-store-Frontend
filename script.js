@@ -31,6 +31,7 @@ function loadProducts() {
             console.log('Produtos carregados:', data);
             products = data;
             renderProducts();
+            renderCategoryNav();
         })
         .catch(error => console.error('Error loading products:', error))
         .finally(() => hideLoading());
