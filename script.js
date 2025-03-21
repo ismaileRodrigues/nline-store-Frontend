@@ -241,9 +241,19 @@ document.addEventListener('DOMContentLoaded', () => {
     cssLink.href = `style.css?t=${timestamp}`;
     scriptLink.src = `script.js?t=${timestamp}`;
 
-    // Adicionar timestamp à URL do index.html
-    if (!window.location.search.includes('t=')) {
+// Adicionar timestamp ao link do CSS, do script.js e à URL do index.html para evitar cache
+document.addEventListener('DOMContentLoaded', () => {
+    const cssLink = document.getElementById('css-link');
+    const scriptLink = document.getElementById('script-link');
+    const timestamp = new Date().getTime();
+    cssLink.href = `style.css?t=${timestamp}`;
+    scriptLink.src = `script.js?t=${timestamp}`;
+
+    // Forçar recarga completa com timestamp
+    const currentUrl = new URL(window.location.href);
+    const currentTimestamp = currentUrl.searchParams.get('t');
+    if (!currentTimestamp || parseInt(currentTimestamp) !== timestamp) {
         const newUrl = `${window.location.pathname}?t=${timestamp}`;
-        window.history.replaceState(null, '', newUrl);
+        window.location.replace(newUrl); // Força uma recarga completa
     }
 });
