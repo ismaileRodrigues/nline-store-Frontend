@@ -233,13 +233,7 @@ window.onclick = function(event) {
     }
 };
 
-// Adicionar timestamp ao link do CSS, do script.js e à URL do index.html para evitar cache
-document.addEventListener('DOMContentLoaded', () => {
-    const cssLink = document.getElementById('css-link');
-    const scriptLink = document.getElementById('script-link');
-    const timestamp = new Date().getTime();
-    cssLink.href = `style.css?t=${timestamp}`;
-    scriptLink.src = `script.js?t=${timestamp}`;
+
 
 // Adicionar timestamp ao link do CSS, do script.js e à URL do index.html para evitar cache
 document.addEventListener('DOMContentLoaded', () => {
