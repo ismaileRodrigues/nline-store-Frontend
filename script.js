@@ -243,10 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
     cssLink.href = `style.css?t=${timestamp}`;
     scriptLink.src = `script.js?t=${timestamp}`;
 
-    // Forçar recarga completa com timestamp
-    const currentUrl = new URL(window.location.href);
-    const currentTimestamp = currentUrl.searchParams.get('t');
-    if (!currentTimestamp || parseInt(currentTimestamp) !== timestamp) {
+    // Adicionar timestamp à URL do index.html
+    if (!window.location.search.includes('t=')) {
         const newUrl = `${window.location.pathname}?t=${timestamp}`;
-        window.location.replace(newUrl); // Força uma recarga completa
+        window.history.replaceState(null, '', newUrl);
     }
+});
