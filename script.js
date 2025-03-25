@@ -1,8 +1,19 @@
-document.addEventListener('DOMContentLoaded', () => {
-    loadCategories();
-    loadProducts();
-    updateTotal();
-    updateCartCount();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('https://online-store-backend-vw45.onrender.com/api/store-status');
+        const data = await response.json();
+
+        if (data.status === 'closed') {
+            document.body.innerHTML = '<h1>Loja Fechada</h1>';
+        } else {
+            loadCategories();
+            loadProducts();
+            updateTotal();
+            updateCartCount();
+        }
+    } catch (error) {
+        console.error('Erro ao verificar o estado da loja:', error);
+    }
 });
 
 let products = [];
@@ -19,7 +30,7 @@ function loadCategories() {
             categories = data;
             renderCategoryNav();
         })
-        .catch(error => console.error('Error loading categories:', error))
+        .catch(error => console.error('Erro ao carregar categorias:', error))
         .finally(() => hideLoading());
 }
 
@@ -33,7 +44,7 @@ function loadProducts() {
             renderProducts();
             renderCategoryNav();
         })
-        .catch(error => console.error('Error loading products:', error))
+        .catch(error => console.error('Erro ao carregar produtos:', error))
         .finally(() => hideLoading());
 }
 
