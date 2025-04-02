@@ -4,45 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja Online</title>
-<link id="css-link" rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link id="css-link" rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-content">
-            <a href="https://site-oficial-xi.vercel.app/" class="home-button">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="https://site-oficial-xi.vercel.app/">
                 <i class="fas fa-home"></i> Home
             </a>
-            <div class="cart-icon" onclick="openCartModal()"> 🛒 <span id="cartCount">0</span> </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="openCartModal()"> 🛒 <span id="cartCount">0</span> </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <div class="container">
-        <h1>Loja Online</h1>
-        <div id="loading" class="loading">Loading...</div>
+    <div class="container mt-5">
+        <h1 class="text-center">Loja Online</h1>
+        <div id="loading" class="loading text-center">Loading...</div>
         <div id="categoryNav" class="category-nav"></div>
-        <div class="products" id="products"></div>
+        <div class="row" id="products"></div>
     </div>
 
     <!-- Modal do Carrinho -->
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeCartModal()">×</span>
-            <h2>Carrinho de Compras</h2>
-            <div class="cart" id="cart"></div>
-            <p id="total">Total: R$ 0.00</p>
-            <button onclick="makeOrder()">Fazer Pedido</button>
+    <div id="cartModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Carrinho de Compras</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart" id="cart"></div>
+                    <p id="total">Total: R$ 0.00</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="makeOrder()">Fazer Pedido</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Modal de Detalhes do Produto -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeProductModal()">×</span>
-            <div id="productDetails"></div>
+    <div id="productModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalhes do Produto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="productDetails"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
         </div>
     </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.0/lazysizes.min.js" async=""></script>
- <script id="script-link" src="script.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script id="script-link" src="script.js"></script>
 </body>
 </html>
