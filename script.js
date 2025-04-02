@@ -237,10 +237,10 @@ function closeCartModal() {
 }
 
 window.onclick = function(event) {
-    if (event.target == document.getElementById('cartModal')) {
+    if (event.target === document.getElementById('cartModal')) {
         closeCartModal();
     }
-    if (event.target == document.getElementById('productModal')) {
+    if (event.target === document.getElementById('productModal')) {
         closeProductModal();
     }
 };
