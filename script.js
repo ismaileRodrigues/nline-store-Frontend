@@ -112,7 +112,7 @@ function renderProducts() {
                 <img src="${product.image}" alt="${product.name}" onclick="openProductModal('${product._id}')">
                 <h3>${product.name}</h3>
                 <p>Preço: R$ ${product.price.toFixed(2)}</p>
-                <button onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
+                <button class="btn btn-primary" onclick="addToCart('${product._id}')">Adicionar ao Carrinho</button>
             `;
             productGrid.appendChild(productElement);
         });
@@ -128,16 +128,16 @@ function openProductModal(productId) {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>Preço: R$ ${product.price.toFixed(2)}</p>
-            <button onclick="addToCart('${product._id}'); closeProductModal()">Adicionar ao Carrinho</button>
+            <button class="btn btn-primary" onclick="addToCart('${product._id}'); closeProductModal()">Adicionar ao Carrinho</button>
         `;
-        document.getElementById('productModal').style.display = 'block';
+        $('#productModal').modal('show');
     } else {
         console.error('Produto não encontrado:', productId);
     }
 }
 
 function closeProductModal() {
-    document.getElementById('productModal').style.display = 'none';
+    $('#productModal').modal('hide');
 }
 
 function highlightActiveCategory() {
@@ -198,7 +198,7 @@ function renderCart() {
             <img src="${item.image}" alt="${item.name}">
             <h3>${item.name}</h3>
             <p>Preço: R$ ${item.price.toFixed(2)}</p>
-            <button onclick="removeFromCart(${index})">Remover</button>
+            <button class="btn btn-danger" onclick="removeFromCart(${index})">Remover</button>
         `;
         cartContainer.appendChild(cartItemElement);
     });
@@ -229,11 +229,11 @@ function makeOrder() {
 }
 
 function openCartModal() {
-    document.getElementById('cartModal').style.display = 'block';
+    $('#cartModal').modal('show');
 }
 
 function closeCartModal() {
-    document.getElementById('cartModal').style.display = 'none';
+    $('#cartModal').modal('hide');
 }
 
 window.onclick = function(event) {
