@@ -63,7 +63,7 @@ h1 {
 
 .category-nav {
     position: sticky;
-    top: 60px;
+    top: 10px;
     background-color: #fff;
     padding: 10px 0;
     display: flex;
@@ -321,10 +321,6 @@ button:hover {
     .home-button {
         padding: 8px 15px;
         font-size: 14px;
-    }
-
-    .category-nav {
-        top: 50px;
     }
 
     h1 {
