@@ -49,6 +49,12 @@ h1 {
     position: relative;
 }
 
+.row {
+
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 10px;
