@@ -244,44 +244,7 @@ window.onclick = function(event) {
         closeProductModal();
     }
 };
-//CARROSSEL
 
-$(document).ready(function(){
-    $('#products').slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        dots: true,
-        arrows: true,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    });
-});
 // Adicionar timestamp ao link do CSS, do script.js e à URL do index.html para evitar cache
 document.addEventListener('DOMContentLoaded', () => {
     const cssLink = document.getElementById('css-link');
