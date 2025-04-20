@@ -170,5 +170,5 @@ function closeCartModal() { document.getElementById('cartModal').style.display =
 
 window.onclick = function(event) { if (event.target == document.getElementById('cartModal')) closeCartModal(); if (event.target == document.getElementById('productModal')) closeProductModal(); };
 
-// Listeners para os filtros searchInput?.addEventListener('input', renderProducts); minPriceInput?.addEventListener('input', renderProducts); maxPriceInput?.addEventListener('input', renderProducts);
+ searchInput?.addEventListener('input', renderProducts); minPriceInput?.addEventListener('input', renderProducts); maxPriceInput?.addEventListener('input', renderProducts);
 
