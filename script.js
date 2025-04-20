@@ -1,10 +1,10 @@
-// Código principal da loja com melhorias de filtro e desempenho
+
 
 let products = []; let categories = []; const cart = []; let total = 0; let currentPage = 1; const productsPerPage = 20;
 
-// Elementos do filtro const searchInput = document.getElementById('searchInput'); const minPriceInput = document.getElementById('minPrice'); const maxPriceInput = document.getElementById('maxPrice');
+const searchInput = document.getElementById('searchInput'); const minPriceInput = document.getElementById('minPrice'); const maxPriceInput = document.getElementById('maxPrice');
 
-// Aguarda o carregamento do DOM document.addEventListener('DOMContentLoaded', async () => { showLoading(); try { const response = await fetch('https://online-store-backend-vw45.onrender.com/api/store-status'); const data = await response.json();
+ document.addEventListener('DOMContentLoaded', async () => { showLoading(); try { const response = await fetch('https://online-store-backend-vw45.onrender.com/api/store-status'); const data = await response.json();
 
 if (data.status === 'closed') {
         document.body.innerHTML = '<h1>Loja Fechada</h1> <br> <p>Fale conosco:  <a href="https://api.whatsapp.com/send?phone=5541998642005" target="_blank" class="text-white mx-2"><i class="fab fa-whatsapp fa-2x"></i></a></p>';
